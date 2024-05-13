@@ -101,4 +101,13 @@ let oneUser2 = async (req, res) => {
   return res.json(user_value);
 };
 
+let book = async (req, res) => {
+  const value = req.query.username;
+  const user_value = await Ecrpy_schema.find({ username: value });
+  if (user_value.length === 0) {
+    return res.status(404).json({ message: "User not found" });
+  }
+  return res.json(user_value);
+};
+
 export { createUser, getUser, specificUser, eCryptModel, oneUser };
